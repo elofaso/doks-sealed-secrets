@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+  namespace: default
+spec:
+  containers:
+  - name: mycontainer
+    image: busybox
+    volumeMounts:
+    - name: crt-volume
+      mountPath: "/etc/tls"
+      readOnly: true
+  volumes:
+  - name: crt-volume
+    secret:
+      secretName: mycrtsecret
